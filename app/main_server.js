@@ -1,14 +1,10 @@
-import {Posts} from 'app/collections';
-import {createPosts, createUsers} from './fixtures';
-// we don't call this so we're just importing to initialize file
-import './method_example';
+import {Teams, Users} from 'app/collections';
 
-// these will only run on the sever since we only 'import' them in main_server.js
+//Like Create/Update/Delete w/ Basic Permissions
+import 'app/methods/teams.js';
+import 'app/methods/users.js';
+import 'app/methods/plans.js';
 
-if (!Posts.find().fetch().length) {
-  createPosts();
-  createUsers();
-}
+import 'app/publications/publications.js';
 
 console.log('\n\nRunning on server only');
-console.log('There are # posts:', Posts.find().fetch().length);

@@ -1,11 +1,11 @@
 /* global Accounts */
-import {Posts} from './collections';
+import {Teams} from './collections';
 
-export function createPosts() {
-  console.log('Creating fake posts');
+export function createTeams() {
+  console.log('Creating fake teams');
   [1, 2, 3, 4].forEach(function(count) {
-    Posts.insert({
-      name: 'Test post # ' + count,
+    Teams.insert({
+      name: 'Test team # ' + count,
       desc: 'How now brown cow',
     });
   });
