@@ -42,23 +42,22 @@ Meteor.methods({
    */
   "Plan.create": function(data) {
     var docId;
-    var data = {};
 
     if (!this.userId) throw new Meteor.Error(401, "Login required");
 
     data.createdBy = this.userId; // XXX cleanup
     data.createdAt = new Date();
     data.updatedAt = new Date();
-    data.title = "untitled";
-    data.desc = "desc";
-    data.monthlyPrice = 0;
-    data.setupPrice = 0;
-    data.maxProjects = 0;
-    data.maxItems = 0;
-    data.freeTrialDays = 0;
+    data.title = data.title;
+    data.desc = data.desc;
+    data.monthlyPrice = data.monthlyPrice;
+    data.setupPrice = data.setupPrice;
+    data.maxProjects = data.maxProjects;
+    data.maxItems = data.maxItems;
+    data.freeTrialDays = data.freeTrialDays;
     data.teamsUsingItCount = 0;
-    data.currAvail = true;
-    data.custom = true;
+    data.currAvail = data.currAvail;
+    data.custom = data.custom;
     data.isDeleted = false;
 
     // ensure user doesn't send extra/evil data
@@ -84,7 +83,7 @@ Meteor.methods({
     var optional = Match.Optional;
 
     check(docId, String);
-    if (User.loggedOut()) throw new Meteor.Error(401, "Login required");
+    if (!this.userId) throw new Meteor.Error(401, "Login required");
     data.updatedAt = new Date();
 
     // whitelist what can be updated
@@ -96,7 +95,7 @@ Meteor.methods({
     });
 
     // if caller doesn't own doc, update will fail because fields won't match
-    selector = {_id: docId, ownerId: User.id()};
+    selector = {_id: docId, createdBy: this.userId};
 
     count = Plans.update(selector, {$set: data});
 

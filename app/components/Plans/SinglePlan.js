@@ -10,6 +10,10 @@ export default class SinglePlan extends React.Component {
     plan: PropTypes.object
   }
 
+  onCheckedChanged = (e) => {
+    Meteor.call('Plan.update', this.props.plan._id, {[e.target.name]: e.target.checked});
+  }
+
   render() {
     const { plan } = this.props;
 
@@ -34,9 +38,9 @@ export default class SinglePlan extends React.Component {
           <li>maxItems: {maxItems}</li>
           <li>freeTrialDays: {freeTrialDays}</li>
           <li>teamsUsingItCount: {teamsUsingItCount}</li>
-          <li>currAvail: {currAvail ? 'yes' : 'no'}</li>
-          <li>custom: {custom ? 'yes' : 'no'}</li>
-          <li>isDeleted: {isDeleted ? 'yes' : 'no'}</li>
+          <li>currAvail: {currAvail ? 'yes' : 'no'} <input type="checkbox" checked={!!currAvail} name='currAvail' onChange={this.onCheckedChanged}/></li>
+          <li>custom: {custom ? 'yes' : 'no'} <input type="checkbox" checked={!!custom} name='custom' onChange={this.onCheckedChanged}/></li>
+          <li>isDeleted: {isDeleted ? 'yes' : 'no'} <input type="checkbox" checked={!!isDeleted} name='isDeleted' onChange={this.onCheckedChanged}/></li>
         </ul>
       </div>
     );

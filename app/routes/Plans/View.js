@@ -4,7 +4,7 @@ import {Plans} from 'app/collections';
 import SinglePlan from '../../components/Plans/SinglePlan';
 
 @reactMixin.decorate(ReactMeteorData)
-export default class PlanView extends Component {
+export default class PlanViewRoute extends Component {
 
   static propTypes = {
     params: PropTypes.object
