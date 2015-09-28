@@ -29,8 +29,11 @@ I'm planning on adding:
 * stripe integration
 * SSR
 * a bunch of other random changes
+* styling =)
 
-This is both my first meteor and react app and is a sample for my own learning.. but please feel free to use it and/or make pull requests. MIT licence.
+This is both my first meteor and react app and is a sample for my own learning.. it's nowhere near ready yet... but please feel free to use it and/or make pull requests as you like.
+
+MIT licence.
 
 
 ## Installing
@@ -39,3 +42,13 @@ This is both my first meteor and react app and is a sample for my own learning..
 * npm install
 * create a settings folder with devel.json, prod.json and stage.json with your social auth and aws s3 keys.
 * type './dev' in your console to start it up.
+
+Basic setup of /app folder:
+
+* Routes folder handles routing and includes pages that are all data fetching components
+* Components folder handles displaying components and styling
+* Publications is essentially the R in CRUD and handles the collections' schemas permissions
+* Methods is pretty much the CUD in CRUD and handles permissions
+* Collections just defines the MongoDB collections
+* Styles has global styles
+* Utils sets up a few things that don't belong anywhere else
