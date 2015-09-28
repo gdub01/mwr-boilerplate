@@ -12,21 +12,17 @@ export default class UserList extends React.Component {
   }
 
   render() {
-
     let users = this.props.users.map((user) => {
-      let formattedCreatedAt = moment(user.createdAt).format('MMMM DD, YYYY')
       return (
         <tr key={user._id}>
           <th><Link to={`/user/${user._id}`}>{user._id}</Link></th>
           <th>{moment(user.createdAt).format('MMMM DD, YYYY')}</th>
+          <th>{user.profile && user.profile.name ? user.profile.name : ''}</th>
         </tr>
       );
     })
 
-    //if (!user) return null;
-
     //const { _id, createdAt, createdBy, title, monthlyPrice, setupPrice } = user;
-
     return (
       <div styleName="wrapper">
         <h1>User list - {this.props.users.length} Total</h1>
@@ -37,7 +33,9 @@ export default class UserList extends React.Component {
               <th>Created At</th>
             </tr>
           </thead>
-          {users}
+          <tbody>
+            {users}
+          </tbody>
         </table>
 
       </div>

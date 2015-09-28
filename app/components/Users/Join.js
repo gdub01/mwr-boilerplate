@@ -1,64 +1,11 @@
-import React from 'react';
+import React, {propTypes} from 'react';
 import {Link} from 'react-router';
 import FormErrors from '../Forms/FormErrors';
 import FormInput from '../Forms/FormInput';
 
 export default class Join extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {errors: {}};
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(event) {
-    event.preventDefault();
-
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    const confirm = event.target.confirm.value;
-
-    const errors = {};
-
-    if (! email) {
-      errors.email = 'Email required';
-    }
-
-    if (! password) {
-      errors.password = 'Password required';
-    }
-
-    if (confirm !== password) {
-      errors.confirm = 'Please confirm your password';
-    }
-
-    this.setState({
-      errors: errors
-    });
-
-    if (! _.isEmpty(errors)) {
-      // Form errors found, do not create user
-      return;
-    }
-
-    Accounts.createUser({
-      email: email,
-      password: password
-    }, (error) => {
-      if (error) {
-        this.setState({
-          errors: { 'none': error.reason }
-        });
-
-        return;
-      }
-
-      // this.transitionTo('/'); waiting for decorator support reactrouter
-    });
-  }
-
   render() {
-
     return (
       <div className="page auth">
 
@@ -69,25 +16,32 @@ export default class Join extends React.Component {
               Join to be awesome
             </p>
 
-            <form onSubmit={ this.onSubmit }>
-              <FormErrors errors={this.state.errors} />
+            <p>Login with these services:</p>
+            <ul>
+              <li><button type="button" onClick={this.props.handleFacebook} ><i className="fa fa-facebook"></i> Sign in with Facebook</button></li>
+              <li><button type="button" onClick={this.props.handleGoogle} ><i className="fa fa-google"></i> Sign in with Google</button></li>
+              <li><button type="button" onClick={this.props.handleTwitter} ><i className="fa fa-twitter"></i> Sign in with Twitter</button></li>
+            </ul>
+
+            <form onSubmit={ this.props.onSubmit }>
+              <FormErrors errors={this.props.errors} />
 
               <FormInput
-                hasError={!!this.state.errors.email}
+                hasError={!!this.props.errors.email}
                 type="email"
                 name="email"
                 label="Your Email"
                 iconClass="icon-email" />
 
               <FormInput
-                hasError={!!this.state.errors.password}
+                hasError={!!this.props.errors.password}
                 type="password"
                 name="password"
                 label="Password"
                 iconClass="icon-lock" />
 
               <FormInput
-                hasError={!!this.state.errors.confirm}
+                hasError={!!this.props.errors.confirm}
                 type="password"
                 name="confirm"
                 label="Confirm Password"

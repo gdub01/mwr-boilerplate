@@ -7,6 +7,10 @@ import {Users} from '../collections';
 
 /*global User:true */
 
+Meteor.methods({
+
+});
+
 let User = {
   // returns user {Object} of current user or
   // returns empty object if not logged in to prevent
@@ -53,7 +57,4 @@ let User = {
     return !Meteor.loggingIn();
   }
 
-  // CRUD
-
-  // Create handles with Meteor login buttons
 };

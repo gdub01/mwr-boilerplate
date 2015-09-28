@@ -12,16 +12,16 @@ export default class UserProfile extends React.Component {
 
   render() {
     const { user } = this.props;
-
     if (!user) return null;
-
     const { _id, createdAt } = user;
 
     return (
       <div styleName="wrapper">
+        <img src={user.profile.avatar} />
         <ul>
-          <li>_id: {_id}</li>
-          <li>createdAt: {moment({createdAt}).format('MMMM DD, YYYY')}</li>
+          <li>Joined: {moment({createdAt}).format('MMMM DD, YYYY')}</li>
+          <li>Name: {user.profile.name}</li>
+          <li>Email: {user.emails && user.emails[0].address ? user.emails[0].address : 'No email'}</li>
         </ul>
       </div>
     );

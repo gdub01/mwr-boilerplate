@@ -9,8 +9,8 @@ export default class FormErrors extends React.Component {
       return (
         <div className="list-errors">
           {
-            _.values(this.props.errors).map(function (errorMessage) {
-              return <div key={errorMessage} className="list-item">
+            _.values(this.props.errors).map((errorMessage, i) => {
+              return <div key={i} className="list-item">
                 {errorMessage}
               </div>;
             })

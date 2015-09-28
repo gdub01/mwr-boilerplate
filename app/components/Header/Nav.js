@@ -1,24 +1,28 @@
 import React from 'react';
 import {Link, History} from 'react-router';
+import reactMixin from 'react-mixin';
 
+@reactMixin.decorate(History)
 export default class Nav extends React.Component {
+  constructor() {
+    super();
+    this.logout = this.logout.bind(this);
+  }
 
   logout() {
     Meteor.logout();
-    // this.history.pushState(null, `/`); *Waiting for react-router decorators in 1.x
+    this.history.pushState(null, `/`);
   }
 
-  render () {
-    const user = Meteor.user();
+  render() {
+    const user = this.props.user;
     let contents;
 
     if (user) {
-      const email = user.emails[0].address;
-      const emailUsername = email.substring(0, email.indexOf('@'));
 
       contents = (
         <div>
-            Hi, <Link to={`/user/${user._id}`}>{ emailUsername }</Link>  <br />
+            Hi, {user.profile.name}
             <button onClick={ this.logout } >Logout</button>
         </div>
       );

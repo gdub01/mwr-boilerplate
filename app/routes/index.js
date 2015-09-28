@@ -16,10 +16,12 @@ React.render(
       <Route path="/" component={Demo} />
       <Route path="/join" component={Users.Join} />
       <Route path="/signin" component={Users.SignIn} />
+      <Route path="/forgot-password" component={Users.ForgotPassword} />
+      <Route path="/reset-password/:token" component={Users.ResetPassword} />
       <Route path="/plans" component={Plans.List} />
       <Route path="/plan/:id" component={Plans.View} />
       <Route path="/users" component={Users.List} />
-      <Route path="/user/:id" component={Users.View} />
+      <Route path="/user/:id" component={Users.Profile} />
       <Route path="/super-global-dashboard/plan/add" component={Plans.Create} />
     </Route>
   </Router>,
