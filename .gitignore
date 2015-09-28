@@ -8,3 +8,5 @@ settings/devel.json
 settings/prod.json
 
 settings/stage.json
+
+app/main_server.js
