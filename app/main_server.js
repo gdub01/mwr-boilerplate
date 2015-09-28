@@ -16,9 +16,9 @@ Meteor.startup(function () {
     { service: "google" },
     {
       $set: {
-        clientId: "382737577331-prgl46ecnqpot7c2cuvuofnsh3o3ctrd.apps.googleusercontent.com",
+        clientId: x,
         loginStyle: "popup",
-        secret: "jX6uPGjOCwnOyiG2-xmrqliU"
+        secret: x
       }
     }
   );
@@ -26,9 +26,9 @@ Meteor.startup(function () {
     { service: "facebook" },
     {
       $set: {
-        appId: "446309738738517",
+        appId: x,
         loginStyle: "popup",
-        secret: "6243afe1305dc7a129bdc77c7ddea778"
+        secret: x
       }
     }
   );
@@ -36,9 +36,9 @@ Meteor.startup(function () {
     { service: "twitter" },
     {
       $set: {
-        consumerKey: "cts2YhYdObADO3Tc2Yzvho2ld",
+        consumerKey: x,
         loginStyle: "popup",
-        secret: "WtJMQb74dm7yQk0qjfGd4xW5o43TfYfd4ELNZcXj8OHGQwOwaZ"
+        secret: x
       }
     }
   );
