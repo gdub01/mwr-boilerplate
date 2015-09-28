@@ -8,7 +8,16 @@ import {Users} from '../collections';
 /*global User:true */
 
 Meteor.methods({
+  storeUserProfileImage: function( url ) {
+    check( url, String );
 
+    try {
+      Meteor.users.update(Meteor.userId(), {$push: {"profile.images": url}});
+      Meteor.users.update(Meteor.userId(), {$set: {"profile.avatar": url }});
+    } catch( exception ) {
+      return exception;
+    }
+  }
 });
 
 let User = {

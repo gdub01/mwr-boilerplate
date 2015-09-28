@@ -33,6 +33,10 @@ export default class JoinRoute extends React.Component {
       errors.password = 'Password required';
     }
 
+    if (password.length < 6) {
+      errors.password = 'Password must be at least 6 digits';
+    }
+
     if (confirm !== password) {
       errors.confirm = 'Please confirm your password';
     }
@@ -51,7 +55,8 @@ export default class JoinRoute extends React.Component {
       password: password,
       profile: {
         name: email.substring(0, email.indexOf('@')),
-        avatar: "http://www.gravatar.com/avatar/" + md5(email.trim().toLowerCase()) + "?s=50&d=mm"
+        avatar: "http://www.gravatar.com/avatar/" + md5(email.trim().toLowerCase()) + "?s=50&d=mm",
+        images: ["http://www.gravatar.com/avatar/" + md5(email.trim().toLowerCase()) + "?s=50&d=mm"]
       }
     }, (error) => {
       if (error) {

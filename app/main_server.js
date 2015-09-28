@@ -6,8 +6,10 @@ import 'app/methods/plans.js';
 
 import 'app/publications/publications.js';
 
-import 'app/Utils/EmailTemplates.js';
-import 'app/Utils/CreateUser.js';
+import 'app/utils/EmailTemplates.js';
+import 'app/utils/CreateUser.js';
+import 'app/utils/ImageUploadPermissions.js';
+import 'app/utils/ImageUploads.js';
 
 Meteor.startup(function () {
 
@@ -15,9 +17,9 @@ Meteor.startup(function () {
     { service: "google" },
     {
       $set: {
-        clientId: x,
+        clientId: Meteor.settings.googleClientID,
         loginStyle: "popup",
-        secret: x
+        secret: Meteor.settings.googleSecret
       }
     }
   );
@@ -25,9 +27,9 @@ Meteor.startup(function () {
     { service: "facebook" },
     {
       $set: {
-        appId: x,
+        appId: Meteor.settings.facebookClientID,
         loginStyle: "popup",
-        secret: x
+        secret: Meteor.settings.facebookSecret
       }
     }
   );
@@ -35,9 +37,9 @@ Meteor.startup(function () {
     { service: "twitter" },
     {
       $set: {
-        consumerKey: x,
+        consumerKey: Meteor.settings.twitterClientID,
         loginStyle: "popup",
-        secret: x
+        secret: Meteor.settings.twitterSecret
       }
     }
   );
