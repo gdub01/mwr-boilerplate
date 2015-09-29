@@ -20,7 +20,7 @@ export default class ForgotPassword extends React.Component {
               <div>{this.props.successMessage}</div>
 
               <FormInput
-                hasError={!! this.props.errors.email}
+                errorMsg={!! this.props.errors.email}
                 type="email"
                 name="email"
                 label="Your Email"

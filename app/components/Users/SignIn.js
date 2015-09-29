@@ -19,13 +19,13 @@ export default class SignIn extends React.Component {
               <FormErrors errors={this.props.errors} />
 
               <FormInput
-                hasError={!! this.props.errors.email}
+                errorMsg={!! this.props.errors.email}
                 type="email"
                 name="email"
                 label="Your Email"
                 iconClass="icon-email" />
 
-              <FormInput hasError={!! this.props.errors.password}
+              <FormInput errorMsg={!! this.props.errors.password}
                 type="password"
                 name="password"
                 label="Password"

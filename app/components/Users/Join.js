@@ -24,27 +24,35 @@ export default class Join extends React.Component {
             </ul>
 
             <form onSubmit={ this.props.onSubmit }>
-              <FormErrors errors={this.props.errors} />
 
               <FormInput
-                hasError={!!this.props.errors.email}
+                errorMsg={!!this.props.errors.email ? this.props.errors.email : null}
                 type="email"
                 name="email"
                 label="Your Email"
+                value={this.props.values.email}
+                handleChange={this.props.handleChange}
+                handleBlur={this.props.handleBlur}
                 iconClass="icon-email" />
 
               <FormInput
-                hasError={!!this.props.errors.password}
+                errorMsg={!!this.props.errors.password ? this.props.errors.password : null }
                 type="password"
                 name="password"
                 label="Password"
+                value={this.props.values.password}
+                handleChange={this.props.handleChange}
+                handleBlur={this.props.handleBlur}
                 iconClass="icon-lock" />
 
               <FormInput
-                hasError={!!this.props.errors.confirm}
+                errorMsg={!!this.props.errors.confirm ? this.props.errors.confirm : null}
                 type="password"
                 name="confirm"
                 label="Confirm Password"
+                value={this.props.values.confirm}
+                handleChange={this.props.handleChange}
+                handleBlur={this.props.handleBlur}
                 iconClass="icon-lock" />
 
               <button type="submit" className="btn-primary">

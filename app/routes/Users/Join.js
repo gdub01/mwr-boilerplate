@@ -8,12 +8,46 @@ import md5 from 'blueimp-md5';
 export default class JoinRoute extends React.Component {
   constructor() {
     super();
-    this.state = {errors: {}};
+    this.state = {
+      errors: {},
+      values: {
+        email: "",
+        password: "",
+        confirm: ""
+      },
+    };
     this.onSubmit = this.onSubmit.bind(this);
     this.handleGoogle = this.handleGoogle.bind(this);
     this.handleTwitter = this.handleTwitter.bind(this);
     this.handleFacebook = this.handleFacebook.bind(this);
     this.logout = this.logout.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+  }
+
+  handleChange(event) {
+    let name = event.currentTarget.name;
+    let value = event.currentTarget.value;
+
+    let newValue = _.extend({}, this.state.values);
+    newValue[name] = value;
+    this.setState({ values: newValue });
+  }
+
+  handleBlur(event) {
+    let name = event.currentTarget.name;
+    let value = event.currentTarget.value;
+    let error = ''
+
+    if (value.length < 1) {
+      error = 'Cant be blank'
+    }
+    if (name === "password" && value.length < 6) {
+      error = 'Password must be at least 6 digits'
+    }
+    let newError = _.extend({}, this.state.errors);
+    newError[name] = error;
+    this.setState({ errors: newError });
   }
 
   onSubmit(event) {
@@ -128,7 +162,10 @@ export default class JoinRoute extends React.Component {
         handleGoogle={this.handleGoogle}
         handleFacebook={this.handleFacebook}
         onSubmit={this.onSubmit}
-        errors={this.state.errors} />
+        errors={this.state.errors}
+        values={this.state.values}
+        handleChange={this.handleChange}
+        handleBlur={this.handleBlur} />
     )
   }
 }

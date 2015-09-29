@@ -15,6 +15,6 @@ Slingshot.createDirective("userImages", Slingshot.S3Storage, {
 
   key: function (file) {
     var user = Meteor.users.findOne(this.userId);
-    return user.emails[0].address + "/" + file.name;
+    return user._id + "/" + file.name;
   }
 });

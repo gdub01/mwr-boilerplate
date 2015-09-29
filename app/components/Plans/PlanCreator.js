@@ -80,14 +80,14 @@ export default class PlanCreator extends React.Component {
           <FormErrors errors={this.state.errors} />
 
           <FormInput
-            hasError={!!this.state.errors.title}
+            errorMsg={!!this.state.errors.title}
             type="text"
             name="title"
             label="Plan Title"
             iconClass="icon-email" />
 
           <FormInput
-            hasError={!!this.state.errors.monthlyPrice}
+            errorMsg={!!this.state.errors.monthlyPrice}
             type="number"
             name="monthlyPrice"
             label="Monthly Price"

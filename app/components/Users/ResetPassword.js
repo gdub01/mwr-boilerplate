@@ -19,14 +19,14 @@ export default class ResetPassword extends React.Component {
               <FormErrors errors={this.props.errors} />
 
               <FormInput
-                hasError={!!this.props.errors.password}
+                errorMsg={!!this.props.errors.password}
                 type="password"
                 name="password"
                 label="Password"
                 iconClass="icon-lock" />
 
               <FormInput
-                hasError={!!this.props.errors.confirm}
+                errorMsg={!!this.props.errors.confirm}
                 type="password"
                 name="confirm"
                 label="Confirm Password"
