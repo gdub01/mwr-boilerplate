@@ -29,9 +29,15 @@ export default class JoinRoute extends React.Component {
     let name = event.currentTarget.name;
     let value = event.currentTarget.value;
 
+    //can also be done with react addons or an immutability package I believe.
+    //this is to merge state rather than replace it with setstate.
     let newValue = _.extend({}, this.state.values);
     newValue[name] = value;
     this.setState({ values: newValue });
+    //setState(function(previousState, currentProps) {
+    //  return {myInteger: previousState.myInteger + 1};
+    //});
+
   }
 
   handleBlur(event) {
