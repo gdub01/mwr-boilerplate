@@ -11,45 +11,18 @@ var schema = {
   commentCount: Number
 };
 
-// optionally run hook to log, audit, or denormalize mongo data
-//Teams.after.insert(function (userId, doc) {
-//  console.log("Inserted Doc", userId, doc);
-//});
-
-// Team Model
-//
-// Example:
-//
-//   Meteor.call('Team.create' {
-//     desc: 'Hello World',
-//   });
-//
-//   Meteor.call('Team.update', '1234', {
-//     desc: 'Goodbye World',
-//   });
-
-
 Meteor.methods({
-  /**
-   * Creates a Team document
-   * @method
-   * @param {object} data - data to insert
-   * @param {object} data.desc - team text content
-   * @param {object} data.userName - team owner username
-   * @returns {string} of document id
-   */
+
   "Team.create": function(data) {
     var docId;
     if (!this.userId) throw new Meteor.Error(401, "Login required");
 
-    data.ownerId = this.userId; // XXX cleanup
+    data.ownerId = this.userId;
     data.createdAt = new Date();
     data.updatedAt = new Date();
     data.likeCount = 0;
     data.commentCount = 0;
 
-    // ensure user doesn't send extra/evil data
-    // ignore _id since it's not created yet
     check(data, _.omit(schema, '_id'));
 
     docId = Teams.insert(data);
@@ -58,14 +31,6 @@ Meteor.methods({
     return docId;
   },
 
-
-  /**
-   * Updates a Team document using $set
-   * @method
-   * @param {string} docId - The doc id to update
-   * @param {object} data - data to update
-   * @returns {number} of documents updated (0|1)
-   */
   "Team.update": function(docId, data) {
     var count, selector;
     var optional = Match.Optional;
@@ -91,13 +56,6 @@ Meteor.methods({
     return count;
   },
 
-
-  /**
-   * Destroys a Team
-   * @method
-   * @param {string} docId - The doc id to destroy
-   * @returns {number} of documents destroyed (0|1)
-   */
   "Team.destroy": function(docId) {
     check(docId, String);
 
@@ -110,16 +68,6 @@ Meteor.methods({
     return count;
   },
 
-
-  /**
-   * Naive implementation of increment like count by 1
-   * this will not check for multiple like by the same person or
-   * even track who liked it. Perhaps after releasing we can fix this
-   *
-   * @method
-   * @param {string} docId - The doc id to like
-   * @returns {number} of documents updated (0|1)
-   */
   "Team.like": function(docId) {
     check(docId, String);
     if (User.loggedOut()) throw new Meteor.Error(401, "Login required");
@@ -130,12 +78,6 @@ Meteor.methods({
     return count;
   },
 
-  /**
-   * Increment a field on Team doc, only allow comments to pass for now
-   * @method
-   * @param {string} docId - The doc id to like
-   * @returns {number} of documents updated (0|1)
-   */
   "Team.increment": function(docId, fieldName) {
     check(fieldName, "commentCount");
     if (User.loggedOut()) throw new Meteor.Error(401, "Login required");

@@ -18,28 +18,7 @@ var schema = {
   isDeleted: Boolean //Soft delete
 };
 
-// Plan Model
-//
-// Example:
-//
-//   Meteor.call('Plan.create' {
-//     desc: 'Hello World',
-//   });
-//
-//   Meteor.call('Plan.update', '1234', {
-//     desc: 'Goodbye World',
-//   });
-
-
 Meteor.methods({
-  /**
-   * Creates a Plan document
-   * @method
-   * @param {object} data - data to insert
-   * @param {object} data.desc - plan text content
-   * @param {object} data.userName - plan owner username
-   * @returns {string} of document id
-   */
   "Plan.create": function(data) {
     var docId;
 
@@ -70,14 +49,6 @@ Meteor.methods({
     return docId;
   },
 
-
-  /**
-   * Updates a Plan document using $set. Also soft deletes plans.
-   * @method
-   * @param {string} docId - The doc id to update
-   * @param {object} data - data to update
-   * @returns {number} of documents updated (0|1)
-   */
   "Plan.update": function(docId, data) {
     var count, selector;
     var optional = Match.Optional;
@@ -103,14 +74,6 @@ Meteor.methods({
     return count;
   },
 
-
-
-  /**
-   * Increment a field on Plan doc, only allow teamsUsingItCount to pass for now
-   * @method
-   * @param {string} docId - The doc id to like
-   * @returns {number} of documents updated (0|1)
-   */
   "Plan.increment": function(docId, fieldName) {
     check(fieldName, "teamsUsingItCount");
     if (User.loggedOut()) throw new Meteor.Error(401, "Login required");
