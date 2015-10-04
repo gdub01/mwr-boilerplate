@@ -21,15 +21,18 @@ export default class InputGeneric extends React.Component {
   }
 
   render() {
-    let className = "label";
+    let msg
     if (this.props.errorMsg) {
-      className += " error";
+      msg += " error";
+    }
+    if (this.props.errorMsg === 'Success!') {
+      msg += " success";
     }
 
     return (
-      <div >
-        <label className={ className } title={ this.props.label }>
-          {this.props.label}<span>{ this.props.errorMsg }</span>
+      <div className="pure-control-group">
+        <label title={ this.props.label }>
+          {this.props.label}
         </label>
         <input
           type={ this.props.type }
@@ -37,7 +40,10 @@ export default class InputGeneric extends React.Component {
           onChange={this.props.handleChange}
           value={this.props.value}
           onBlur={this.props.handleBlur}
-          placeholder={ this.props.label } />
+          placeholder={ this.props.label }
+          id={this.props.validate}
+          />
+        <span className={ msg }>{ this.props.errorMsg }</span>
       </div>
     );
   }

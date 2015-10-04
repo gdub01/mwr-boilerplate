@@ -5,6 +5,7 @@ import InputGeneric from '../Forms/InputGeneric';
 import md5 from 'blueimp-md5';
 import {History} from 'react-router';
 import reactMixin from 'react-mixin';
+import JoinCss from './Join.css';
 
 @handleForms
 @reactMixin.decorate(History)
@@ -100,37 +101,40 @@ export default class JoinComponent extends React.Component {
           <li><button type="button" onClick={this.handleTwitter} ><i className="fa fa-twitter"></i> Sign in with Twitter</button></li>
         </ul>
 
-        <form onSubmit={() => this.handleSubmit(event, errors, values)} >
-          <InputGeneric
-            type="email"
-            name="email"
-            handleChange={this.props.handleTextChange}
-            value={values.email}
-            errorMsg={errors.email}
-            handleBlur={this.props.handleRequiredBlur}
-            label="Email Address"  />
+        <form className="pure-form pure-form-aligned" onSubmit={() => this.handleSubmit(event, errors, values)} >
+          <fieldset>
+            <InputGeneric
+              type="email"
+              name="email"
+              handleChange={this.props.handleTextChange}
+              value={values.email}
+              errorMsg={errors.email}
+              handleBlur={this.props.handleRequiredBlur}
+              validate="email"
+              label="Email Address"  />
 
-          <InputGeneric
-            type="password"
-            name="password"
-            handleChange={this.props.handleTextChange}
-            value={values.password}
-            errorMsg={errors.password}
-            handleBlur={this.props.handlePasswordBlur}
-            label="Password"  />
+            <InputGeneric
+              type="password"
+              name="password"
+              handleChange={this.props.handleTextChange}
+              value={values.password}
+              errorMsg={errors.password}
+              handleBlur={this.props.handlePasswordBlur}
+              validate="password"
+              label="Password"  />
 
-          <InputGeneric
-            type="password"
-            name="confirm"
-            handleChange={this.props.handleTextChange}
-            value={values.confirm}
-            errorMsg={errors.confirm}
-            handleBlur={this.props.handleRequiredBlur}
-            label="Confirm Password"  />
+            <InputGeneric
+              type="password"
+              name="confirm"
+              handleChange={this.props.handleTextChange}
+              value={values.confirm}
+              errorMsg={errors.confirm}
+              handleBlur={this.props.handleRequiredBlur}
+              validate="password"
+              label="Confirm Password"  />
 
-          <button type="submit">
-            Join Now
-          </button>
+            <button className="pure-button pure-button-primary" type="submit">Join Now</button>
+          </fieldset>
         </form>
       </div>
     );

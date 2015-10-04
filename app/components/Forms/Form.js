@@ -1,14 +1,5 @@
 import React, { Component } from "react";
 
-//errors by default. Errors shown on form submit. Errors hidden by default. Errors shown on blur. Errors hidden again if errorMsg is blank on change.
-//componentdidmount - validate all inputs.
-//inputgeneric component did mount call handleform's validate and update error messages.
-
-//ie. validateEmail func in handleforms returns email: 'errormessage'
-// genericinput needs to receive 'validate: validateemail' on props or validate: required.
-// genericinput mounts, if this.props.validate.email, call this.props.validateemail
-//onchange try getting current.target.refs here in forms  or pass 'handlechange(required)' as argument
-
 export var handleForms = ComposedComponent => class extends Component {
   static displayName = "handleForms"
 
@@ -19,9 +10,6 @@ export var handleForms = ComposedComponent => class extends Component {
       values: {}
     };
     this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.handlePasswordBlur = this.handlePasswordBlur.bind(this);
-    this.handleRequiredBlur = this.handleRequiredBlur.bind(this);
   }
 
   render() {
@@ -36,50 +24,48 @@ export var handleForms = ComposedComponent => class extends Component {
   }
 
   handleTextChange(event) {
-    let name = event.currentTarget.name;
-    let value = event.currentTarget.value; //text inputs get value from 'value'
-
+    let name = event.target.name;
+    let value = event.target.value; //text inputs get value from 'value'
     //can also be done with react addons or an immutability package I believe.
     //this is to merge state rather than replace it with setstate.
+    let validate = event.target.id;
+    if (validate) {
+      let error = this[validate](value);
+      let newError = _.extend({}, this.state.errors);
+      newError[name] = error;
+      this.setState({ errors: newError });
+    }
+
+
     let newValue = _.extend({}, this.state.values);
     newValue[name] = value;
     this.setState({ values: newValue });
   }
 
-  handleCheckboxChange(event) {
-    let name = event.currentTarget.name;
-    let value = event.currentTarget.checked; //checkboxes get value from 'checked'
-
-    let newValue = _.extend({}, this.state.values);
-    newValue[name] = value;
-    this.setState({ values: newValue });
-  }
-
-  handlePasswordBlur(event) {
-    let name = event.currentTarget.name;
-    let value = event.currentTarget.value;
-    let error = ''
-
+  password(value) {
     if (value.length < 6) {
-      error = ' - Password must be at least 6 digits'
+      return ('Password must be at least 6 digits');
     }
-
-    let newError = _.extend({}, this.state.errors);
-    newError[name] = error;
-    this.setState({ errors: newError });
+    if (value.search(/[a-z]/i) < 0) {
+      return ('Your password must contain at least one letter');
+    }
+    if (value.search(/[0-9]/) < 0) {
+      return ('Your password must contain at least 1 number');
+    }
+    return ('Success!');
   }
 
-  handleRequiredBlur(event) {
-    let name = event.currentTarget.name;
-    let value = event.currentTarget.value;
-    let error = ''
-
+  required(value) {
     if (value.length < 1) {
-      error = ' - Can\'t be blank'
+      return ('Can\'t be blank');
     }
+    return ('Success!');
+  }
 
-    let newError = _.extend({}, this.state.errors);
-    newError[name] = error;
-    this.setState({ errors: newError });
+  email(value) {
+    if (value.search(/[^\s@]+@[^\s@]+\.[^\s@]+/) < 0) {
+      return ('Doesn\'t look like a valid email');
+    }
+    return ('Success!');
   }
 };
