@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+  context: __dirname,
   target: 'node',
   entry: [
     './lib/core-js-no-number',
@@ -15,9 +16,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    alias: {
-      app: path.join(__dirname, '../app'),
-    },
+    root: path.join(__dirname, '../app'),
   },
   module: {
     loaders: [

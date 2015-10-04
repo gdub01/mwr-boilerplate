@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {Teams, Users} from 'app/collections';
 
 import 'app/methods/teams.js';
@@ -44,6 +45,12 @@ Meteor.startup(function () {
     }
   );
 });
+=======
+import {Posts} from './collections';
+import {createPosts, createUsers} from './fixtures';
+// we don't call this so we're just importing to initialize file
+import './method_example';
+>>>>>>> master
 
 
 
