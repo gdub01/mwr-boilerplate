@@ -1,6 +1,13 @@
 # Boilerplate SaaS app built on meteor-webpack-react
 
+<<<<<<< HEAD
 This is a bit of boilerplate based on https://github.com/jedwards1211/meteor-webpack-react ... which is fantastic work. You'll want to give it a look first.
+=======
+This is a Meteor project skeleton where the client (in React) and server get built by Webpack.  In dev mode,
+webpack-dev-server is used with [react-transform](https://github.com/gaearon/babel-plugin-react-transform).  There are a bunch of run and build scripts to make things more convenient.
+
+Meteor's builtin ES6 support doesn't allow you to `import`(/`require`), but **with this project you can use all ES6 features on client and server today**, thanks to Webpack.  There are even source maps on the server thanks to https://github.com/evanw/node-source-map-support!  
+>>>>>>> master
 
 For those new to the react/meteor combo, it's got, among other things:
 
@@ -57,6 +64,7 @@ MIT licence.
 
 ## Installing
 
+<<<<<<< HEAD
 * git clone git@github.com:gdub01/mwr-boilerplate.git
 * npm install
 * create a settings folder with devel.json, prod.json and stage.json with your social auth and aws s3 keys.
@@ -81,3 +89,45 @@ Sample devel.json file:
 }`
 
 See how the settings are pulled in in app/main_server.js
+=======
+
+## Deployment
+
+Big thanks to Adam Brodzinski for creating a deployment script!
+
+There is a deployment script that supports several common options:
+```
+./deploy my-app.meteor.com
+```
+The usual basic meteor.com deploy
+
+```
+./deploy modulus
+```
+Uses modulus (make sure to go into the deploy script and replace `your_app_proj_name` with a real value
+
+```
+./deploy mup
+```
+See deploy script for some additional hints
+
+```
+./deploy demeteorizer
+```
+Builds with demeteorizer
+
+
+## Meteor Settings
+
+Put your settings in `settings/devel.json` & `settings/prod.json` and they will automatically load when running in development, production and build modes.
+
+
+## Running Meteor Commands
+
+As a convenience you can run `./met` in the root directory to run the `meteor` command. However you can still `cd meteor_core` and then run `meteor` from that directory as well.
+
+```
+./met  --version
+./met search simple-schema
+```
+>>>>>>> master
