@@ -32,7 +32,6 @@ export default class Join extends React.Component {
                 label="Your Email"
                 value={this.props.values.email}
                 handleChange={this.props.handleChange}
-                handleBlur={this.props.handleBlur}
                 iconClass="icon-email" />
 
               <FormInput
@@ -42,7 +41,6 @@ export default class Join extends React.Component {
                 label="Password"
                 value={this.props.values.password}
                 handleChange={this.props.handleChange}
-                handleBlur={this.props.handleBlur}
                 iconClass="icon-lock" />
 
               <FormInput
@@ -52,7 +50,6 @@ export default class Join extends React.Component {
                 label="Confirm Password"
                 value={this.props.values.confirm}
                 handleChange={this.props.handleChange}
-                handleBlur={this.props.handleBlur}
                 iconClass="icon-lock" />
 
               <button type="submit" className="btn-primary">

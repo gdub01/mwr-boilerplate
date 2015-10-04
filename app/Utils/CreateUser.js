@@ -42,3 +42,11 @@ if(user.services.facebook) {
 
  return user;
 });
+
+
+// Validate username, sending a specific error message on failure.
+Accounts.validateNewUser(function (user) {
+  if (user.password && user.password.length >= 6)
+    return true;
+  throw new Meteor.Error(403, "Password must have at least 6 characters");
+});

@@ -18,76 +18,6 @@ export default class JoinComponent extends React.Component {
     this.handleFacebook = this.handleFacebook.bind(this);
   }
 
-  handleSubmit(event, errors, values) {
-    event.preventDefault();
-
-    let email = values.email;
-    let password = values.password;
-    let confirm = values.confirm;
-
-
-    if (! errors) {
-      // Form errors found, do not create user
-      return;
-    }
-
-    Accounts.createUser({
-      email: email,
-      password: password,
-      profile: {
-        name: email.substring(0, email.indexOf('@')),
-        avatar: "http://www.gravatar.com/avatar/" + md5(email.trim().toLowerCase()) + "?s=50&d=mm",
-        images: ["http://www.gravatar.com/avatar/" + md5(email.trim().toLowerCase()) + "?s=50&d=mm"]
-      }
-    }, (error) => {
-      if (error) {
-        console.log(error)
-        return;
-      }
-    });
-    this.history.pushState(null, `/`);
-  }
-
-  handleFacebook() {
-    Meteor.loginWithFacebook ({
-        requestPermissions: ['email']
-      }, (error) => {
-        if (error) {
-          this.setState({
-            errors: { 'none': error.reason }
-          });
-        return;
-      }
-    });
-    this.history.pushState(null, `/`);
-  }
-
-  handleGoogle() {
-    Meteor.loginWithGoogle({
-      requestPermissions: ['email']
-    }, (error) => {
-      if (error) {
-        this.setState({
-          errors: { 'none': error.reason }
-        });
-        return;
-      }
-    });
-    this.history.pushState(null, `/`);
-  }
-
-  handleTwitter() {
-    Meteor.loginWithTwitter((error) => {
-      if (error) {
-        this.setState({
-          errors: { 'none': error.reason }
-        });
-        return;
-      }
-    });
-    this.history.pushState(null, `/`);
-  }
-
   render() {
     let values = this.props.formState.values;
     let errors = this.props.formState.errors;
@@ -106,39 +36,109 @@ export default class JoinComponent extends React.Component {
             <InputGeneric
               type="email"
               name="email"
-              handleChange={this.props.handleTextChange}
+              handleChange={this.props.handleChange}
               value={values.email}
               errorMsg={errors.email}
-              handleBlur={this.props.handleRequiredBlur}
-              validate="email"
-              label="Email Address"  />
+              validateBy="email"
+              label="Email Address"
+              required="true"  />
 
             <InputGeneric
               type="password"
               name="password"
-              handleChange={this.props.handleTextChange}
+              handleChange={this.props.handleChange}
               value={values.password}
               errorMsg={errors.password}
-              handleBlur={this.props.handlePasswordBlur}
-              validate="password"
-              label="Password"  />
+              validateBy="password"
+              label="Password"
+              required="true"  />
 
             <InputGeneric
               type="password"
               name="confirm"
-              handleChange={this.props.handleTextChange}
+              handleChange={this.props.handleChange}
               value={values.confirm}
               errorMsg={errors.confirm}
-              handleBlur={this.props.handleRequiredBlur}
-              validate="password"
-              label="Confirm Password"  />
+              validateBy="confirmPassword"
+              label="Confirm Password"
+              required="true"  />
 
-            <button className="pure-button pure-button-primary" type="submit">Join Now</button>
+            <button className="pure-button pure-button-primary" type="submit">
+              Join Now
+            </button>
           </fieldset>
         </form>
       </div>
     );
   }
 
+  handleSubmit(event, errors, values) {
+    event.preventDefault();
 
+    const {email, password, confim} = values;
+
+    //don't submit form if an error message is displaying
+    if (errors.email || errors.password || errors.confirm) {
+      console.log(errors.email + errors.password + errors.confirm)
+      return
+    }
+
+    //todo - handle form submission b
+
+    Accounts.createUser({
+      email: email,
+      password: password,
+      profile: {
+        name: email.substring(0, email.indexOf('@')),
+        avatar: "http://www.gravatar.com/avatar/" + md5(email.trim().toLowerCase()) + "?s=50&d=mm", //actual image picked by user to display
+        images: ["http://www.gravatar.com/avatar/" + md5(email.trim().toLowerCase()) + "?s=50&d=mm"] //collection of images in users account
+      }
+    }, (error) => {
+      if (error) {
+        console.log(error.reason)
+        return;
+      }
+    });
+    this.history.pushState(null, `/`);
+  }
+
+  handleFacebook() {
+    Meteor.loginWithFacebook ({
+        requestPermissions: ['email']
+      }, (error) => {
+        if (error) {
+          this.setState({
+            errors: { 'facebook': error.reason }
+          });
+        return;
+      }
+    });
+    this.history.pushState(null, `/`);
+  }
+
+  handleGoogle() {
+    Meteor.loginWithGoogle({
+      requestPermissions: ['email']
+    }, (error) => {
+      if (error) {
+        this.setState({
+          errors: { 'google': error.reason }
+        });
+        return;
+      }
+    });
+    this.history.pushState(null, `/`);
+  }
+
+  handleTwitter() {
+    Meteor.loginWithTwitter((error) => {
+      if (error) {
+        this.setState({
+          errors: { 'twitter': error.reason }
+        });
+        return;
+      }
+    });
+    this.history.pushState(null, `/`);
+  }
 }

@@ -20,9 +20,9 @@ random
 ejson
 spacebars
 check
-blaze-html-templates
 accounts-google
 accounts-twitter
 accounts-facebook
 service-configuration
 edgee:slingshot
+static-html

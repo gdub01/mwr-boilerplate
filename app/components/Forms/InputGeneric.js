@@ -39,9 +39,9 @@ export default class InputGeneric extends React.Component {
           name={ this.props.name }
           onChange={this.props.handleChange}
           value={this.props.value}
-          onBlur={this.props.handleBlur}
           placeholder={ this.props.label }
-          id={this.props.validate}
+          data-validateby={this.props.validateBy}
+          required={this.props.required}
           />
         <span className={ msg }>{ this.props.errorMsg }</span>
       </div>
