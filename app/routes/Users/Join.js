@@ -1,5 +1,5 @@
 import React from 'react';
-import Join from 'app/components/Users/Join';
+import Join from '../../components/Users/Join';
 import {History} from 'react-router';
 import reactMixin from 'react-mixin';
 import md5 from 'blueimp-md5';

@@ -1,16 +1,15 @@
-<<<<<<< HEAD
-import {Teams, Users} from 'app/collections';
+import {Teams, Users} from './collections';
 
-import 'app/methods/teams.js';
-import 'app/methods/users.js';
-import 'app/methods/plans.js';
+import './methods/teams.js';
+import './methods/users.js';
+import './methods/plans.js';
 
-import 'app/publications/publications.js';
+import './publications/publications.js';
 
-import 'app/utils/EmailTemplates.js';
-import 'app/utils/CreateUser.js';
-import 'app/utils/ImageUploadPermissions.js';
-import 'app/utils/ImageUploads.js';
+import './utils/EmailTemplates.js';
+import './utils/CreateUser.js';
+import './utils/ImageUploadPermissions.js';
+import './utils/ImageUploads.js';
 
 Meteor.startup(function () {
 
@@ -45,13 +44,5 @@ Meteor.startup(function () {
     }
   );
 });
-=======
-import {Posts} from './collections';
-import {createPosts, createUsers} from './fixtures';
-// we don't call this so we're just importing to initialize file
-import './method_example';
->>>>>>> master
-
-
 
 console.log('\n\nRunning on server only');

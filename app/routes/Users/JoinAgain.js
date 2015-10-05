@@ -1,5 +1,5 @@
 import React from 'react';
-import JoinComponent from 'app/components/Users/JoinComponent';
+import JoinComponent from '../../components/Users/JoinComponent';
 import {History} from 'react-router';
 import reactMixin from 'react-mixin';
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ResetPassword from 'app/components/Users/ResetPassword';
+import ResetPassword from '../../components/Users/ResetPassword';
 import reactMixin from 'react-mixin';
 import {Link, History} from 'react-router';
 

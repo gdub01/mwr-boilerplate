@@ -1,4 +1,4 @@
-import {Plans, Users} from 'app/collections';
+import {Plans, Users} from '../collections';
 
 Meteor.publish('plans', function() {
   return Plans.find();

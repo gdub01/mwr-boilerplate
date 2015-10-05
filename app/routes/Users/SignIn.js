@@ -1,7 +1,7 @@
 import React from 'react';
 import reactMixin from 'react-mixin';
 import {Link, History} from 'react-router';
-import SignIn from 'app/components/Users/SignIn';
+import SignIn from '../../components/Users/SignIn';
 
 @reactMixin.decorate(History)
 export default class SignInRoute extends React.Component {

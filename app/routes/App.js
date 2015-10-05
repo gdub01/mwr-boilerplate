@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Nav from 'app/components/Header/Nav';
+import Nav from '../components/Header/Nav';
 import reactMixin from 'react-mixin';
 
 @reactMixin.decorate(ReactMeteorData)

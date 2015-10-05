@@ -1,10 +1,10 @@
 import React from 'react';
 
-import 'app/methods/teams.js';
-import 'app/methods/users.js';
-import 'app/methods/plans.js';
+import './methods/teams.js';
+import './methods/users.js';
+import './methods/plans.js';
 
-import 'app/utils/ImageUploadPermissions.js';
+import './utils/ImageUploadPermissions.js';
 
 import {Routes} from './routes';
 
