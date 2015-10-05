@@ -1,4 +1,4 @@
-export Join from './JoinAgain';
+export Join from './Join';
 export SignIn from './SignIn';
 export List from './List';
 export Profile from './Profile';

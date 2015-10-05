@@ -21,7 +21,7 @@ export default class InputGeneric extends React.Component {
   }
 
   render() {
-    let msg
+    let msg = "pure-form-message"
     if (this.props.errorMsg) {
       msg += " error";
     }
@@ -31,7 +31,7 @@ export default class InputGeneric extends React.Component {
 
     return (
       <div className="pure-control-group">
-        <label title={ this.props.label }>
+        <label htmlFor={ this.props.name } title={ this.props.label }>
           {this.props.label}
         </label>
         <input

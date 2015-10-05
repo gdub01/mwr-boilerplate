@@ -200,19 +200,16 @@ since IE8 won't execute CSS that contains a CSS3 selector.
     border-color: #ccc;
 }
 
-.error{
+.pure-form input:focus:invalid,
+.pure-form textarea:focus:invalid,
+.pure-form select:focus:invalid {
     color: #b94a48;
     border-color: #e9322d;
 }
-.error-box{
+.pure-form input[type="file"]:focus:invalid:focus,
+.pure-form input[type="radio"]:focus:invalid:focus,
+.pure-form input[type="checkbox"]:focus:invalid:focus {
     outline-color: #e9322d;
-}
-.success{
-    color: green;
-    border-color: green;
-}
-.success-box{
-    outline-color: green;
 }
 .pure-form select {
     /* Normalizes the height; padding is not sufficient. */

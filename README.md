@@ -1,13 +1,13 @@
 # Boilerplate SaaS app built with Meteor, MongoDB, React and Webpack
 
-This is a bit of boilerplate based on https://github.com/jedwards1211/meteor-webpack-react ... which is fantastic work. You'll want to give it a look first.
+This is based on https://github.com/jedwards1211/meteor-webpack-react ... which is fantastic work by jedwards1211 and adambrodinski to combine meteor with webpack and react. You'll want to give it a look first.
 
 ### For those new to the react/meteor combo, out of the box it's got:
 
 * optimistic UI (changes reflected immediately and synced with the server behind the scenes)
 * universal/isomorphic
 * can be productive and iterate quickly
-* fantastic, easy deployment options
+* easy deployment options
 
 ### This boilerplate has:
 
@@ -44,7 +44,7 @@ This is a bit of boilerplate based on https://github.com/jedwards1211/meteor-web
 ### Basic setup of /app folder:
 
 * Routes folder handles routing and includes pages that are all data fetching components
-* Components folder handles displaying components and styling
+* Components folder handles displaying components
 * Publications is essentially the R in CRUD and handles reading permissions
 * Methods is pretty much the CUD in CRUD and handles the collections' schemas and permissions
 * Collections just defines the MongoDB collections
@@ -63,8 +63,9 @@ MIT licence.
 
 ```
 git clone git@github.com:gdub01/mwr-boilerplate.git
-npm installcreate a settings folder with devel.json, prod.json and stage.json with your social auth and aws s3 keys.
-type './dev' in your console to start it up.
+npm install
+create a settings folder with devel.json, prod.json and stage.json with your social auth and aws s3 keys. (copy/paste the sample below and add your client ids/keys where appropriate)
+type 'node dev.js' in your console to start it up.
 definitely look at this: https://github.com/jedwards1211/meteor-webpack-react to see what's going on and how to deploy (it's pretty fun and painless. Meteor is launching their own hosting service, galaxy, soon too and you'll be able to deploy it there.)
 ```
 
