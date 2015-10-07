@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import FormErrors from '../Forms/FormErrors';
-import FormInput from '../Forms/FormInput';
+import InputStacked from '../Forms/InputStacked';
 
 export default class ForgotPassword extends React.Component {
 
@@ -16,10 +15,9 @@ export default class ForgotPassword extends React.Component {
             </p>
 
             <form onSubmit={ this.props.onSubmit }>
-              <FormErrors errors={this.props.errors} />
               <div>{this.props.successMessage}</div>
 
-              <FormInput
+              <InputStacked
                 errorMsg={!! this.props.errors.email}
                 type="email"
                 name="email"

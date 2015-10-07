@@ -1,6 +1,7 @@
 import React from 'react';
+import styles from './inputStacked.css';
 
-export default class InputGeneric extends React.Component {
+export default class InputStacked extends React.Component {
   propTypes: {
     errorMsg: React.PropTypes.string,
     label: React.PropTypes.string,
@@ -21,20 +22,21 @@ export default class InputGeneric extends React.Component {
   }
 
   render() {
-    let msg = "pure-form-message"
+    let style;
     if (this.props.errorMsg) {
-      msg += " error";
+      style = styles.messageError;
     }
     if (this.props.errorMsg === 'Success!') {
-      msg += " success";
+      style = styles.messageSuccess;
     }
 
     return (
-      <div className="pure-control-group">
+      <div>
         <label htmlFor={ this.props.name } title={ this.props.label }>
-          {this.props.label}
+          {this.props.label} <span className={style}>- { this.props.errorMsg }</span>
         </label>
         <input
+          className={styles.input}
           type={ this.props.type }
           name={ this.props.name }
           onChange={this.props.handleChange}
@@ -43,7 +45,6 @@ export default class InputGeneric extends React.Component {
           data-validateby={this.props.validateBy}
           required={this.props.required}
           />
-        <span className={ msg }>{ this.props.errorMsg }</span>
       </div>
     );
   }

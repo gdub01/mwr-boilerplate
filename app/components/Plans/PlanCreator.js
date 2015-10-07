@@ -2,8 +2,7 @@
 //import styles from './styles.styl';
 
 import React, { PropTypes } from 'react';
-import FormErrors from '../Forms/FormErrors';
-import FormInput from '../Forms/FormInput';
+import InputStacked from '../Forms/InputStacked';
 
 //import CSSModules from 'react-css-modules';
 
@@ -77,59 +76,58 @@ export default class PlanCreator extends React.Component {
     return (
       <div styleName="wrapper">
         <form onSubmit={ this.onSubmit }>
-          <FormErrors errors={this.state.errors} />
 
-          <FormInput
+          <InputStacked
             errorMsg={!!this.state.errors.title}
             type="text"
             name="title"
             label="Plan Title"
             iconClass="icon-email" />
 
-          <FormInput
+          <InputStacked
             errorMsg={!!this.state.errors.monthlyPrice}
             type="number"
             name="monthlyPrice"
             label="Monthly Price"
             iconClass="icon-lock" />
 
-          <FormInput
+          <InputStacked
             type="number"
             name="setupPrice"
             label="Setup Price"
             iconClass="icon-lock" />
 
-          <FormInput
+          <InputStacked
             type="text"
             name="desc"
             label="Description"
             iconClass="icon-lock" />
 
-          <FormInput
+          <InputStacked
             type="number"
             name="maxProjects"
             label="Max Projects (0 for unlimited)"
             iconClass="icon-lock" />
 
-          <FormInput
+          <InputStacked
             type="number"
             name="maxItems"
             label="Max Items (0 for unlimited)"
             iconClass="icon-lock" />
 
-          <FormInput
+          <InputStacked
             type="number"
             name="freeTrialDays"
             label="Free Trial Days"
             iconClass="icon-lock" />
 
-          <FormInput
+          <InputStacked
             type="checkbox"
             name="currAvail"
             label="Currently Available?"
             iconClass="icon-lock" />
 
-          <FormInput
+          <InputStacked
             type="checkbox"
             name="custom"
             label="Custom Plan?"

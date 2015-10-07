@@ -1,87 +1,60 @@
 /* misc default styling */
-.pure-menu {
-    background-color: #1976D2;
-    height: 3.3em;
-    color: #fff;
+.sidebar {
+  background-color: #1976D2;
+  height: 100%;
+  color: #fff;
+  white-space: nowrap;
+  position: fixed;
+  width: 12em;
+  display: block;
+  top: 0;
+  box-shadow: 1px 1px 12px -2px rgba(0,0,0,0.62);
 }
 
-.pure-menu-separator {
-    background-color: #ccc;
-    height: 1px;
-    margin: 0 0;
+.sidebarList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
 }
 
-.pure-menu-horizontal .pure-menu-separator {
-    width: 1px;
-    height: 3.3em;
-    padding: 0 0;
-    margin: 0 .3em ;
+.item {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  display: block;
+  zoom: 1;
+  font-size: .9em;
+  line-height: 2.1em;
 }
 
-.pure-menu-heading {
-    color: #565d64;
+.divider {
+  background-color: #ccc;
+  height: 1px;
+  margin: 0 0;
 }
 
-.pure-menu-link {
-    color: #fff;
+.link {
+  color: #fff;
 }
 
-.pure-menu-children {
-    background-color: #1976D2;
+.link {
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0em 1em;
 }
 
-.pure-menu-link,
-.pure-menu-disabled,
-.pure-menu-heading {
-    padding: 0em 1em;
+.active > .link,
+.link:hover,
+.link:focus {
+  color: #BBDEFB;
 }
 
-.pure-menu-active > .pure-menu-link,
-.pure-menu-link:hover,
-.pure-menu-link:focus {
-    color: #BBDEFB;
-}
-
-.pure-menu-selected .pure-menu-link,
-.pure-menu-selected .pure-menu-link:visited {
-    color: #000;
-}
-
-.img-avatar {
-    border-radius: 50%;
-    margin: .25em 1em .25em 0em;
-    height: 50px;
-    width: 50px;
-}
-.float-right {
-  float: right
-}
-
-
-/* Submenus should still be display: block; */
-.pure-menu-item .pure-menu-item {
-    display: block;
-}
-
-.pure-menu-children {
-    position: absolute;
-    left: 100%;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    padding-bottom:.2em;
-    margin-top: .65em;
-    z-index: 3;
-}
-
-.pure-menu-horizontal .pure-menu-children {
-    left: 0;
-    top: auto;
-    width: inherit;
-}
-
-.pure-menu-allow-hover:hover > .pure-menu-children,
-.pure-menu-active > .pure-menu-children {
-    display: block;
-    position: absolute;
+.heading {
+  composes: link item;
+  font-size: 1em;
+  padding-top: .6em;
+  padding-bottom: .6em;
 }

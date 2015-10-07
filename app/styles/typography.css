@@ -82,12 +82,21 @@ samp {
 table {
   font-size: 1rem;
   line-height: 2.41667rem;
-  width: 100%;
+  text-align: left;
+  display: block;
+  overflow: scroll; /* Scrollbar are always visible */
+  overflow: auto;   /* Scrollbar is displayed as it's needed */
 }
 
 thead {
-  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
+
+tbody {
+  white-space: nowrap;
+}
+
 
 h1,
 h2,

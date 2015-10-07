@@ -1,60 +1,62 @@
 import React from 'react';
 import {Link, History} from 'react-router';
 import reactMixin from 'react-mixin';
-import menu from '../../globalstyles/menu.css';
-import nav from './nav.css';
+import styles from './nav.css';
 
 
 export default class Nav extends React.Component {
   render() {
     const user = this.props.user;
     let rightSide;
+    let style = {
+      marginLeft: '7.4em'
+    }
 
     if (user) {
 
       rightSide = (
-        <div className="pure-u-1-3">
-          <div className="pure-menu pure-menu-horizontal">
-            <ul className="pure-menu-list float-right">
-              <li className="pure-menu-item pure-menu-has-children">
-                <a href="#" onClick={this.props.handleDropDownClick} className="pure-menu-link" ><i className="fa fa-ellipsis-v"></i></a>
-                { this.props.showDropDown ? <DropDown /> : null }
-              </li>
-              <li className="pure-menu-item"><a href="#" onClick={this.props.handleDropDownClick} ><img src={user.profile.avatar} className="img-avatar" /></a></li>
-            </ul>
-          </div>
-        </div>
+        <ul className={styles.navbarListRight}>
+          <li className={styles.item}>
+            <a href="#" onClick={this.props.handleDropDownClick} className={styles.link} ><i className="fa fa-ellipsis-v"></i></a>
+          </li>
+          { this.props.showDropDown ? <DropDown /> : null }
+          <li className={styles.item}><a href="#" onClick={this.props.handleDropDownClick} ><img src={user.profile.avatar} className={styles.avatar} /></a></li>
+
+        </ul>
       );
 
     } else {
       rightSide = (
-        <div className="pure-u-1-3">
-          <div className="pure-menu pure-menu-horizontal">
-            <ul className="pure-menu-list float-right">
-              <span className="pure-menu-separator"></span>
-              <li className="pure-menu-item"><Link to="/signin" className="pure-menu-link">Sign in</Link></li>
-              <li className="pure-menu-item"><Link to="/join" className="pure-menu-link">Join</Link></li>
-            </ul>
-          </div>
-        </div>
+        <ul className={styles.navbarListRight}>
+          <li className={styles.divider}></li>
+          <li className={styles.item}><Link to="/signin" className={styles.link}>Sign in</Link></li>
+          <li className={styles.item}><Link to="/join" className={styles.link}>Join</Link></li>
+        </ul>
       );
     }
 
     return (
-      <div className="pure-g">
-        <div className="pure-u-2-3">
-          <div className="pure-menu pure-menu-horizontal">
-            <a href="#" onClick={this.props.handleMenuClick} className="pure-menu-heading pure-menu-link"><i className="fa fa-bars"></i> Menu</a>
-            <ul className="pure-menu-list">
-              <li className="pure-menu-item pure-menu-separator"></li>
-              <li className="pure-menu-item"><Link to="/" className="pure-menu-link">Home</Link></li>
-              <li className="pure-menu-item"><Link to="/plans" className="pure-menu-link">Plans</Link></li>
-              <li className="pure-menu-item"><Link to="/users" className="pure-menu-link">Users</Link></li>
-            </ul>
-          </div>
-        </div>
+      <div className={styles.navbar}>
+        <ul className={styles.navbarList}>
+          <li className={styles.item}>
+            <a href="#" onClick={this.props.handleMenuClick}
+                        className={styles.link}>
+              <i className="fa fa-bars"></i>
+              <span className={styles.menu}> Menu</span>
+            </a>
+          </li>
+          <li className={styles.divider}></li>
+          <li className={styles.itemHiddenOnSmall}>
+            <Link to="/" style={(this.props.showSidebar) ? style : {}} className={styles.link}>
+              Home
+            </Link>
+          </li>
+          <li className={styles.itemHiddenOnSmall}><Link to="/plans" className={styles.link}>Plans</Link></li>
+          <li className={styles.itemHiddenOnSmall}><Link to="/users" className={styles.link}>Users</Link></li>
+        </ul>
         { rightSide }
       </div>
+
     );
   }
 }
@@ -73,32 +75,10 @@ class DropDown extends React.Component {
 
   render() {
     return (
-      <ul className="pure-menu-children">
-        <li className="pure-menu-item"><a href="#" onClick={this.logout} className="pure-menu-link">Logout</a></li>
-        <li className="pure-menu-item"><a href="#" className="pure-menu-link">Profile</a></li>
+      <ul className={styles.children}>
+        <li className={styles.item}><a href="#" className={styles.link}><i className="fa fa-user"></i> Profile</a></li>
+        <li className={styles.item}><a href="#" onClick={this.logout} className={styles.link}><i className="fa fa-sign-out"></i> Logout</a></li>
       </ul>
-    );
-  }
-}
-
-class Menu extends React.Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return (
-      <div className="pure-g">
-        <div className="pure-u-1-3">
-          <div className="pure-menu">
-            <ul className="pure-menu-list">
-              <li className="pure-menu-item"><Link to="/" className="pure-menu-link">Home</Link></li>
-              <li className="pure-menu-item"><Link to="/plans" className="pure-menu-link">Plans</Link></li>
-              <li className="pure-menu-item"><Link to="/users" className="pure-menu-link">Users</Link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
     );
   }
 }

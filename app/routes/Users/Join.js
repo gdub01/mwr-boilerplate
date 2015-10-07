@@ -1,14 +1,11 @@
 import React, {propTypes} from 'react';
-import {handleForms} from '../../components/Forms/Form';
-import InputGeneric from '../../components/Forms/InputGeneric';
+import {handleForms} from '../../components/Forms/FormDecorator';
+import InputStacked from '../../components/Forms/InputStacked';
 import md5 from 'blueimp-md5';
 import {History, Link} from 'react-router';
 import reactMixin from 'react-mixin';
 
-import forms from '../../globalstyles/forms.css';
-import buttons from '../../globalstyles/buttons.css'
-import grids from '../../globalstyles/grids.css'
-import join from './join.css'
+import styles from './join.css'
 
 @handleForms
 @reactMixin.decorate(History)
@@ -25,60 +22,54 @@ export default class JoinComponent extends React.Component {
     let values = this.props.formState.values;
     let errors = this.props.formState.errors;
     return (
-      <div>
-        <div className="pure-g">
-          <div className="pure-u-1-3">
-          <h2>Get Started!</h2>
-            <div className="login-buttons">
-              <button className="pure-button pure-button-primary" type="button" onClick={this.handleFacebook} >Join with Facebook <i className="fa fa-facebook fa-lg"></i></button><br />
-              <button className="pure-button pure-button-primary pure-button-primary" type="button" onClick={this.handleGoogle} >Join with Google <i className="fa fa-google fa-lg"></i></button><br />
-              <button className="pure-button pure-button-primary" type="button" onClick={this.handleTwitter} >Join with Twitter <i className="fa fa-twitter fa-lg"></i></button>
-            </div>
+      <div className={styles.joinBox}>
+        <h2 className={styles.title}>Get Started!</h2>
+          <button className={styles.btn} type="button" onClick={this.handleFacebook} >Join with Facebook <i className="fa fa-facebook fa-lg"></i></button><br />
+          <button className={styles.btn} type="button" onClick={this.handleGoogle} >Join with Google <i className="fa fa-google fa-lg"></i></button><br />
+          <button className={styles.btn} type="button" onClick={this.handleTwitter} >Join with Twitter <i className="fa fa-twitter fa-lg"></i></button>
 
-            <form className="pure-form pure-form-stacked" onSubmit={() => this.handleSubmit(event, errors, values)} >
-              <fieldset>
+          <form className={styles.form} onSubmit={() => this.handleSubmit(event, errors, values)} >
+            <h6 className={styles.subtitle}>- Or Join with Email -</h6>
+            <fieldset>
 
-              <h6>- Or Join with Email -</h6>
-                <InputGeneric
-                  type="email"
-                  name="email"
-                  handleChange={this.props.handleChange}
-                  value={values.email}
-                  errorMsg={errors.email}
-                  validateBy="email"
-                  label="Email Address"
-                  required="true"  />
+              <InputStacked
+                type="email"
+                name="email"
+                handleChange={this.props.handleChange}
+                value={values.email}
+                errorMsg={errors.email}
+                validateBy="email"
+                label="Email Address"
+                required="true"  />
 
-                <InputGeneric
-                  type="password"
-                  name="password"
-                  handleChange={this.props.handleChange}
-                  value={values.password}
-                  errorMsg={errors.password}
-                  validateBy="password"
-                  label="Password"
-                  required="true"  />
+              <InputStacked
+                type="password"
+                name="password"
+                handleChange={this.props.handleChange}
+                value={values.password}
+                errorMsg={errors.password}
+                validateBy="password"
+                label="Password"
+                required="true"  />
 
-                <InputGeneric
-                  type="password"
-                  name="confirm"
-                  handleChange={this.props.handleChange}
-                  value={values.confirm}
-                  errorMsg={errors.confirm}
-                  validateBy="confirmPassword"
-                  label="Confirm Password"
-                  required="true"  />
+              <InputStacked
+                type="password"
+                name="confirm"
+                handleChange={this.props.handleChange}
+                value={values.confirm}
+                errorMsg={errors.confirm}
+                validateBy="confirmPassword"
+                label="Confirm Password"
+                required="true"  />
 
-                <div className="pure-controls">
-                  <button className="pure-button pure-button-primary" type="submit">
-                    Join with Email
-                  </button>
-                </div>
-              </fieldset>
-            </form>
-          </div>
+              <div className="pure-controls">
+                <button className={styles.btn} type="submit">
+                  Join with Email
+                </button>
+              </div>
+            </fieldset>
+          </form>
         </div>
-      </div>
     );
   }
 

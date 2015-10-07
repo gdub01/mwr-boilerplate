@@ -1,11 +1,9 @@
-//import styles from './styles.styl';
-
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 import {Link} from 'react-router';
-//import CSSModules from 'react-css-modules';
 
-//@CSSModules(styles)
+import styles from './planList.css';
+
 export default class PlanList extends React.Component {
   static propTypes = {
     plans: PropTypes.array
@@ -17,12 +15,12 @@ export default class PlanList extends React.Component {
       let formattedCreatedAt = moment(plan.createdAt).format('MMMM DD, YYYY')
       return (
         <tr key={plan._id}>
-          <th><Link to={`/plan/${plan._id}`}>{plan._id}</Link></th>
-          <th>{moment(plan.createdAt).format('MMMM DD, YYYY')}</th>
-          <th>{plan.createdBy}</th>
-          <th>{plan.title}</th>
-          <th>{plan.monthlyPrice}</th>
-          <th>{plan.setupPrice}</th>
+          <td><Link to={`/plan/${plan._id}`}>{plan._id}</Link></td>
+          <td>{moment(plan.createdAt).format('MMMM DD, YYYY')}</td>
+          <td>{plan.createdBy}</td>
+          <td>{plan.title}</td>
+          <td>{plan.monthlyPrice}</td>
+          <td>{plan.setupPrice}</td>
         </tr>
       );
     })
@@ -32,7 +30,7 @@ export default class PlanList extends React.Component {
     //const { _id, createdAt, createdBy, title, monthlyPrice, setupPrice } = plan;
 
     return (
-      <div styleName="wrapper">
+      <div className={styles.wrapper}>
         <h1>Plan list - {this.props.plans.length} Total</h1>
         <Link to='/super-global-dashboard/plan/add'>Create new plan</Link>
         <table>
@@ -48,7 +46,6 @@ export default class PlanList extends React.Component {
           </thead>
           {plans}
         </table>
-
       </div>
     );
   }

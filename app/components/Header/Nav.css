@@ -1,87 +1,108 @@
 /* misc default styling */
-.pure-menu {
-    background-color: #1976D2;
-    height: 3.3em;
-    color: #fff;
+.navbar {
+  background-color: #1976D2;
+  height: 3.3em;
+  color: #fff;
+  width: 100%;
+  white-space: nowrap;
+  position: fixed;
+  top:0;
+  box-shadow: 1px 1px 12px -2px rgba(0,0,0,0.62);
 }
 
-.pure-menu-separator {
-    background-color: #ccc;
-    height: 1px;
-    margin: 0 0;
+.navbarList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  float:left;
 }
 
-.pure-menu-horizontal .pure-menu-separator {
-    width: 1px;
-    height: 3.3em;
-    padding: 0 0;
-    margin: 0 .3em ;
+.navbarListRight {
+  composes: navbarList;
+  float:right;
 }
 
-.pure-menu-heading {
-    color: #565d64;
+.navbarList,
+.item {
+  position: relative;
 }
 
-.pure-menu-link {
-    color: #fff;
+.item {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+  font-size: .9em;
 }
 
-.pure-menu-children {
-    background-color: #1976D2;
+.itemHiddenOnSmall {
+  composes: item
 }
 
-.pure-menu-link,
-.pure-menu-disabled,
-.pure-menu-heading {
-    padding: 0em 1em;
+.divider {
+  composes: item;
+  background-color: #ccc;
+  width: 1px;
+  font-size: 1em;
+  height: 3.3em;
+  padding: 0 0;
+  margin: 0 .3em;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
 }
 
-.pure-menu-active > .pure-menu-link,
-.pure-menu-link:hover,
-.pure-menu-link:focus {
-    color: #BBDEFB;
+.link {
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0em 1em;
 }
 
-.pure-menu-selected .pure-menu-link,
-.pure-menu-selected .pure-menu-link:visited {
-    color: #000;
+.active > .link,
+.link:hover,
+.link:focus {
+  color: #BBDEFB;
 }
 
-.img-avatar {
-    border-radius: 50%;
-    margin: .25em 1em .25em 0em;
-    height: 50px;
-    width: 50px;
-}
-.float-right {
-  float: right
-}
-
-
-/* Submenus should still be display: block; */
-.pure-menu-item .pure-menu-item {
-    display: block;
-}
-
-.pure-menu-children {
-    position: absolute;
-    left: 100%;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    padding-bottom:.2em;
-    margin-top: .65em;
-    z-index: 3;
+.children {
+  background-color: #1976D2;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  padding-bottom:.2em;
+  z-index: 3;
+  display: block;
+  right: .7em;
+  top: auto;
+  width: 9em;
+  -webkit-box-shadow: 1px 1px 12px -2px rgba(0,0,0,0.62);
+  -moz-box-shadow: 1px 1px 12px -2px rgba(0,0,0,0.62);
+  box-shadow: 1px 1px 12px -2px rgba(0,0,0,0.62);
 }
 
-.pure-menu-horizontal .pure-menu-children {
-    left: 0;
-    top: auto;
-    width: inherit;
+.children li {
+  display: block;
 }
 
-.pure-menu-allow-hover:hover > .pure-menu-children,
-.pure-menu-active > .pure-menu-children {
-    display: block;
-    position: absolute;
+.avatar {
+  border-radius: 50%;
+  margin: .25em 1em 0em 0em;
+  height: 2.95em;
+  width: 2.95em;
+}
+
+@media all and (max-width: 30em) {
+  .itemHiddenOnSmall, .menu {
+    display: none;
+  }
+  .divider {
+    visibility: hidden;
+  }
 }
