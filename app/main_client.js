@@ -4,7 +4,7 @@ import './methods/teams.js';
 import './methods/users.js';
 import './methods/plans.js';
 
-import './utils/ImageUploadPermissions.js';
+import './lib/ImageUploadPermissions.js';
 
 import {Routes} from './routes';
 

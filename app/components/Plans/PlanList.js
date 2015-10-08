@@ -32,7 +32,7 @@ export default class PlanList extends React.Component {
     return (
       <div className={styles.wrapper}>
         <h1>Plan list - {this.props.plans.length} Total</h1>
-        <Link to='/super-global-dashboard/plan/add'>Create new plan</Link>
+        <Link to='/super-global-dashboard/plan/add'>Create ndew plan</Link>
         <table>
           <thead>
             <tr>

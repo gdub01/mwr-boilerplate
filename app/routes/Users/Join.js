@@ -77,14 +77,7 @@ export default class JoinComponent extends React.Component {
     event.preventDefault();
 
     const {email, password, confim} = values;
-
-    //don't submit form if an error message is displaying
-    if (errors.email || errors.password || errors.confirm) {
-      console.log(errors.email + errors.password + errors.confirm)
-      return
-    }
-
-    //todo - handle form submission b
+    console.log (email + password + confim);
 
     Accounts.createUser({
       email: email,

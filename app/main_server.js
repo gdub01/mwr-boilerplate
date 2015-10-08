@@ -6,10 +6,10 @@ import './methods/plans.js';
 
 import './publications/publications.js';
 
-import './utils/EmailTemplates.js';
-import './utils/CreateUser.js';
-import './utils/ImageUploadPermissions.js';
-import './utils/ImageUploads.js';
+import './lib/EmailTemplates.js';
+import './lib/CreateUser.js';
+import './lib/ImageUploadPermissions.js';
+import './lib/ImageUploads.js';
 
 Meteor.startup(function () {
 
